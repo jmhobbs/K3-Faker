@@ -1,6 +1,6 @@
 # What is it?
 
-This is a Fake data module for Kohana 3.1.x
+This is a lazy-loading Fake data module for Kohana 3.1.x
 
 # Usage
 
@@ -23,13 +23,21 @@ Returns a sentence of Lorem Ipsum text.
 
 Returns a single word of Lorem Ipsum.
 
-## Planned
-
 ### Faker::name
+
+Returns a first and last name.
 
 ### Faker::first_name
 
+Returns a first name.
+
 ### Faker::last_name
+
+Returns a last name.
+
+## Planned
+
+?
 
 # Inspiration / Credit
 

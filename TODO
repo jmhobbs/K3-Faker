@@ -1,0 +1,8 @@
+- Perhaps move to an extension format, so things are called like this:
+
+	Faker::Name()->first_name();
+
+- Better folder organization
+- Version numbers
+- Code style
+- Tests

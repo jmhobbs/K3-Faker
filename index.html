@@ -1,63 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset='utf-8'>
+	<head>
+	  <meta charset='utf-8'>
 
-  <title>jmhobbs/K3-Faker @ GitHub</title>
+	  <title>jmhobbs/K3-Faker @ GitHub</title>
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #77C244;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #883dbb; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #883dbb; }
-    h3 { text-align: center; color: #883dbb; }
-    a { color: #883dbb; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
-</head>
+		<style type="text/css">
+			body {
+				margin-top: 1.0em;
+				background: #FFF url('noise.png');
+				font-family: Helvetica, Arial, FreeSans, san-serif;
+				color: #000;
+			}
+			#container {
+				margin: 0 auto;
+				width: 700px;
+			}
+			h1 { font-size: 3.8em; color: #77C244; margin-bottom: 3px; text-shadow: #444 1px 1px 2px; }
+			h1 .small { font-size: 0.4em; }
+			h1 a { text-decoration: none }
+			h2 { font-size: 1.5em; color: #77C244; text-shadow: #CCC 1px 1px 1px; }
+			h3 { text-align: center; color: #77C244; }
+			a { color: #77C244; }
+			.description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+			.download { float: right; }
+			pre { background: #000; color: #fff; padding: 15px;}
+			hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+			.footer { text-align:center; padding-top:30px; font-style: italic; }
+		</style>
 
-<body>
-  <a href="http://github.com/jmhobbs/K3-Faker"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+	</head>
+	<body>
+		<a href="http://github.com/jmhobbs/K3-Faker"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
-  <div id="container">
+		<div id="container">
+			<div class="download">
+				<a href="http://github.com/jmhobbs/K3-Faker/zipball/master"><img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+				<a href="http://github.com/jmhobbs/K3-Faker/tarball/master"><img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+			</div>
 
-    <div class="download">
-      <a href="http://github.com/jmhobbs/K3-Faker/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/jmhobbs/K3-Faker/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
+			<h1>
+				<a href="http://github.com/jmhobbs/K3-Faker">K3-Faker</a>
+				<span class="small">by <a href="http://github.com/jmhobbs">jmhobbs</a></span>
+			</h1>
 
-    <h1><a href="http://github.com/jmhobbs/K3-Faker">K3-Faker</a>
-      <span class="small">by <a href="http://github.com/jmhobbs">jmhobbs</a></span></h1>
+			<div class="description">
+				A fake data generator for Kohana 3.1.x.
+			</div>
 
-    <div class="description">
-      A fake data generator for Kohana 3.1.x.
-    </div>
+			<p>It is a lazy-loading, locale aware Fake data module for Kohana 3.1.x.</p>
+			<p>It is inspired by (and borrows data from) Ruby's <a href="http://faker.rubyforge.org/" target="_blank">Faker gem</a>,and Perl's <a href="http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm" target="_blank">Data::Faker</a>.</p>
 
-    <p>It is a lazy-loading, locale aware Fake data module for Kohana 3.1.x.
+			<h2>Dependencies</h2>
+			<p>Kohana 3.1.x</p>
 
-It is inspired by (and borrows data from) Ruby's Faker gem, http://faker.rubyforge.org/, and Perl's Data::Faker, http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm</p><h2>Dependencies</h2>
-<p>Kohana 3.1.x</p>
-<h2>Install</h2>
-<p>1. Drop the source in your <tt>MODPATH</tt> folder.
-2. Add the module to <tt>Kohana::modules</tt> in your <tt>bootstrap.php</tt></p>
-<h2>License</h2>
-<p>Copyright (c) 2011 John Hobbs
+			<h2>Install</h2>
+			<ol>
+				<li>Drop the source in your <tt>MODPATH</tt> folder.</li>
+				<li>Add the module to <tt>Kohana::modules</tt> in your <tt>bootstrap.php</tt></li>
+			</ol>
+
+			<h2>Documentation</h2>
+
+			<p>Basic Usage</p>
+			<pre>echo Faker::name() . "\n";
+echo Faker::phone_number() . "\n";</pre>
+
+			<p>Output</p>
+			<pre>Abbigail Vandervort
+1-202-479-9161</pre>
+
+			<p>
+				<a href="doc/html/index.html">Click Here For Full Doxygen Documentation</a>
+			</p>
+
+			<h2>License</h2>
+			<pre>Copyright (c) 2011 John Hobbs
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -75,38 +93,40 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.</p>
-<h2>Authors</h2>
-<p>John Hobbs (john@velvetcache.org)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>John Hobbs (john@velvetcache.org)<br/>      </p>
+THE SOFTWARE.</pre>
 
+			<h2>Authors</h2>
+			<p>John Hobbs (john@velvetcache.org)</p>
 
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/jmhobbs/K3-Faker/zipball/master">zip</a> or
-      <a href="http://github.com/jmhobbs/K3-Faker/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/jmhobbs/K3-Faker</pre>
-    </p>
+			<h2>Contact</h2>
+			<p>John Hobbs (john@velvetcache.org)</p>
 
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/jmhobbs/K3-Faker">jmhobbs/K3-Faker</a>
-    </div>
+			<h2>Download</h2>
+			<p>
+				You can download this project in either
+				<a href="http://github.com/jmhobbs/K3-Faker/zipball/master">zip</a> or
+				<a href="http://github.com/jmhobbs/K3-Faker/tarball/master">tar</a> formats.
+			</p>
+			<p>
+				You can also clone the project with <a href="http://git-scm.com">Git</a> by running:
+				<pre>$ git clone git://github.com/jmhobbs/K3-Faker</pre>
+			</p>
 
-  </div>
+			<div class="footer">
+				get the source code on GitHub : <a href="http://github.com/jmhobbs/K3-Faker">jmhobbs/K3-Faker</a>
+			</div>
 
-  <script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-1664885-10");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-</body>
+		</div>
+
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+			try {
+				var pageTracker = _gat._getTracker("UA-1664885-10");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		</script>
+	</body>
 </html>

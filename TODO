@@ -2,7 +2,5 @@
 
 	Faker::Name()->first_name();
 
-- Better folder organization
-- Version numbers
 - Code style
 - Tests

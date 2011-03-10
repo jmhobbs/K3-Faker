@@ -1,6 +1,4 @@
-- Perhaps move to an extension format, so things are called like this:
-
-	Faker::Name()->first_name();
-
-- Code style
+- Docs
+- Code Style
+- Version Bump
 - Tests

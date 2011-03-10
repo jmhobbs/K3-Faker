@@ -1,17 +1,27 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-	class Kohana_Faker_Address extends Kohana_Faker_Core {
-		protected static $CITY_PREFIX          = null;
-		protected static $CITY_SUFFIX          = null;
-		protected static $STREET_SUFFIX        = null;
-		protected static $STREET_NUMBER        = null;
-		protected static $SECONDARY_ADDRESS    = null;
-		protected static $POSTAL_CODE          = null;
+	/*!
+		Fake Address data.
 
-		protected static $STATE_NAME           = null;
-		protected static $STATE_ABBREVIATION   = null;
+		Don't access directly, instead use the Faker class.
 
-		protected static $COUNTRY_NAME         = null;
+		\code
+Faker::Address()->city
+		\endcode
+	*/
+	class Kohana_Faker_Address extends Kohana_Faker_Module {
+
+		protected static $CITY_PREFIX        = null;
+		protected static $CITY_SUFFIX        = null;
+		protected static $STREET_SUFFIX      = null;
+		protected static $STREET_NUMBER      = null;
+		protected static $SECONDARY_ADDRESS  = null;
+		protected static $POSTAL_CODE        = null;
+
+		protected static $STATE_NAME         = null;
+		protected static $STATE_ABBREVIATION = null;
+
+		protected static $COUNTRY_NAME       = null;
 
 		/*!
 			Get a city name.

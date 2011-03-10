@@ -1,15 +1,18 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-	class Kohana_Faker_Core {
+	/*!
+		Base class for fake data modules.
+	*/
+	class Kohana_Faker_Module {
 		const DEFAULT_LOCALE = 'en';
 
 		/*!
-			Load faker information with locale, if needed.
+			Load fake information through Kohana::config, with locale, and only if needed.
 
 			\param name The name of the data to load.
 			\param locale The locale to load. Defaults to current LC_ALL locale.
 		*/
-		protected function loadData ($name, $locale = null) {
+		protected function load_data ($name, $locale = null) {
 			$var_name = strtoupper($name);
 			if( null == $this::$$var_name ) {
 
@@ -26,7 +29,7 @@
 						throw new Exception("Could not find locale data file.");
 					}
 					else {
-						$this::loadData($name, self::DEFAULT_LOCALE);
+						$this::load_data($name, self::DEFAULT_LOCALE);
 					}
 				}
 
@@ -42,7 +45,7 @@
 		*/
 		protected function data_rand ( $name ) {
 			$var_name = strtoupper($name);
-			$this::loadData($name);
+			$this::load_data($name);
 			// Variable variables require some reference juggling.
 			$block =& $this::$$var_name;
 			return $block[array_rand($block)];
@@ -61,6 +64,30 @@
 				$format_arguments[] = mt_rand($min,$max);
 			}
 			return vsprintf($format, $format_arguments);
+		}
+
+		/*!
+			Allows property-like access to methods.
+
+			This overload allows you to call things like this:
+
+			\code
+Faker::Name()->first
+			\endcode
+
+			Instead of this:
+
+			\code
+Faker::Name()->first()
+			\endcode
+		*/
+		public function __get ( $name ) {
+			if( method_exists( $this, $name ) ) {
+				return $this->$name();
+			}
+			else {
+				throw new Kohana_Exception( "Undefined Property: $name" );
+			}
 		}
 
 	}

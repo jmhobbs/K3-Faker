@@ -1,10 +1,24 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-	class Kohana_Faker_Company extends Kohana_Faker_Core {
+	/*!
+		Fake Company data.
+
+		Don't access directly, instead use the Faker class.
+
+		\code
+Faker::Company()->name
+		\endcode
+	*/
+	class Kohana_Faker_Company extends Kohana_Faker_Module {
 
 		protected static $COMPANY_SUFFIX = null;
 		protected static $CATCH_PHRASE   = null;
 
+		/*!
+			Get a company name.
+
+			\returns String - A company name.
+		*/
 		public function name () {
 			switch( mt_rand( 0, 2 ) ) {
 				default:
@@ -30,8 +44,13 @@
 			}
 		}
 
+		/*!
+			Get a buzzword filled company catch phrase.
+
+			\returns String - Your new company motivation
+		*/
 		public function catch_phrase () {
-			self::loadData('catch_phrase');
+			self::load_data('catch_phrase');
 
 			return implode(
 				' ',

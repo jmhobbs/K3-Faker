@@ -1,8 +1,17 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-	class Kohana_Faker_Name extends Kohana_Faker_Core {
-		protected static $FIRST_NAME           = null;
-		protected static $LAST_NAME            = null;
+	/*!
+		Fake Name data.
+
+		Don't access directly, instead use the Faker class.
+
+		\code
+Faker::Name()->first
+		\endcode
+	*/
+	class Kohana_Faker_Name extends Kohana_Faker_Module {
+		protected static $FIRST_NAME = null;
+		protected static $LAST_NAME  = null;
 
 		/*!
 			Get a persons full name.
@@ -23,8 +32,6 @@
 		}
 
 		/*!
-			Get a persons first name.
-
 			Alias of first_name()
 
 			\return String - A first name.
@@ -44,8 +51,6 @@
 		}
 
 		/*!
-			Get a persons last name.
-
 			Alias of last_name()
 
 			\return String - A last name.

@@ -1,6 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-	class Kohana_Faker_Lipsum extends Kohana_Faker_Core {
+	/*!
+		Lorem Ipsum, Dolor Sit Amet.
+
+		Don't access directly, instead use the Faker class.
+
+		\code
+Faker::Lipsum()->p
+		\endcode
+	*/
+	class Kohana_Faker_Lipsum extends Kohana_Faker_Module {
 		protected static $LIPSUM         = null;
 
 		/*!
@@ -18,8 +27,6 @@
 		}
 
 		/*!
-			Get a single paragraph of Lorem Ipsum.
-
 			Alias of paragraph()
 
 			\return String - A paragraph of Lorem Ipsum

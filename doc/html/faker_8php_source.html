@@ -19,7 +19,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">K3-Faker&#160;<span id="projectnumber">0.2.0</span></div>
+   <div id="projectname">K3-Faker&#160;<span id="projectnumber">0.3.1</span></div>
    <div id="projectbrief">A fake data generator for Kohana.</div>
   </td>
  </tr>
@@ -59,203 +59,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>classes/faker.php</h1>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php defined(<span class="stringliteral">&#39;SYSPATH&#39;</span>) or die(&#39;No direct script access.&#39;);
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php defined(<span class="stringliteral">&#39;SYSPATH&#39;</span>) or die(&#39;No direct access allowed.&#39;);
 <a name="l00002"></a>00002 
-<a name="l00046"></a><a class="code" href="class_faker.html">00046</a>         class <a class="code" href="class_faker.html" title="This class lets you get fake information that looks real.">Faker</a> {
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048                 <span class="keyword">const</span> DEFAULT_LOCALE = <span class="stringliteral">&#39;en&#39;</span>;
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050                 <span class="keyword">protected</span> <span class="keyword">static</span> $LIPSUM               = null;
-<a name="l00051"></a>00051                 <span class="keyword">protected</span> <span class="keyword">static</span> $FIRST_NAME           = null;
-<a name="l00052"></a>00052                 <span class="keyword">protected</span> <span class="keyword">static</span> $LAST_NAME            = null;
-<a name="l00053"></a>00053                 <span class="keyword">protected</span> <span class="keyword">static</span> $PHONE_NUMBER         = null;
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055                 <span class="keyword">protected</span> <span class="keyword">static</span> $CITY_PREFIX          = null;
-<a name="l00056"></a>00056                 <span class="keyword">protected</span> <span class="keyword">static</span> $CITY_SUFFIX          = null;
-<a name="l00057"></a>00057                 <span class="keyword">protected</span> <span class="keyword">static</span> $STREET_SUFFIX        = null;
-<a name="l00058"></a>00058                 <span class="keyword">protected</span> <span class="keyword">static</span> $STREET_NUMBER        = null;
-<a name="l00059"></a>00059                 <span class="keyword">protected</span> <span class="keyword">static</span> $SECONDARY_ADDRESS    = null;
-<a name="l00060"></a>00060                 <span class="keyword">protected</span> <span class="keyword">static</span> $POSTAL_CODE          = null;
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062                 <span class="keyword">protected</span> <span class="keyword">static</span> $STATE_NAME           = null;
-<a name="l00063"></a>00063                 <span class="keyword">protected</span> <span class="keyword">static</span> $STATE_ABBREVIATION   = null;
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065                 <span class="keyword">protected</span> <span class="keyword">static</span> $COUNTRY_NAME         = null;
-<a name="l00066"></a>00066 
-<a name="l00073"></a><a class="code" href="class_faker.html#aa5edebc62cf90e34e83385cbd3189989">00073</a>                 <span class="keyword">protected</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#aa5edebc62cf90e34e83385cbd3189989" title="Load faker information with locale, if needed.">loadData</a> ($name, $locale = null) {
-<a name="l00074"></a>00074                         $var_name = strtoupper($name);
-<a name="l00075"></a>00075                         <span class="keywordflow">if</span>( null == <span class="keyword">self</span>::$$var_name ) {
-<a name="l00076"></a>00076                                 <span class="keywordflow">if</span>( $locale == null ) {
-<a name="l00077"></a>00077                                         $locale = setlocale(LC_ALL, NULL);
-<a name="l00078"></a>00078                                 }
-<a name="l00079"></a>00079                                 <span class="comment">// TODO: dirname(__FILE__) and string based path joins are lame.</span>
-<a name="l00080"></a>00080                                 $path =  dirname( __FILE__ ) . <span class="stringliteral">&#39;/faker_data/&#39;</span> . $locale . <span class="charliteral">&#39;/&#39;</span> . $name . <span class="stringliteral">&#39;.php&#39;</span> ;
-<a name="l00081"></a>00081                                 <span class="keywordflow">if</span>( file_exists( $path ) ) {
-<a name="l00082"></a>00082                                         <span class="keyword">self</span>::$$var_name = require_once( $path );
-<a name="l00083"></a>00083                                 }
-<a name="l00084"></a>00084                                 <span class="keywordflow">else</span> {
-<a name="l00085"></a>00085                                         <span class="keywordflow">if</span>( $locale == self::DEFAULT_LOCALE ) {
-<a name="l00086"></a>00086                                                 <span class="keywordflow">throw</span> <span class="keyword">new</span> Exception(<span class="stringliteral">&quot;Could not find data file!&quot;</span>);
-<a name="l00087"></a>00087                                         }
-<a name="l00088"></a>00088                                         <span class="keywordflow">else</span> {
-<a name="l00089"></a>00089                                                 self::loadData($name, self::DEFAULT_LOCALE);
-<a name="l00090"></a>00090                                         }
-<a name="l00091"></a>00091                                 }
-<a name="l00092"></a>00092                         }
-<a name="l00093"></a>00093                 }
-<a name="l00094"></a>00094 
-<a name="l00102"></a><a class="code" href="class_faker.html#a116dfe15024ede2e8ee2ad0c2f3fa0ef">00102</a>                 <span class="keyword">protected</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a116dfe15024ede2e8ee2ad0c2f3fa0ef" title="Generic random data fetcher.">data_rand</a> ( $name ) {
-<a name="l00103"></a>00103                         $var_name = strtoupper($name);
-<a name="l00104"></a>00104                         self::loadData($name);
-<a name="l00105"></a>00105                         <span class="comment">// Variable variables require some reference juggling.</span>
-<a name="l00106"></a>00106                         $block =&amp; <span class="keyword">self</span>::$$var_name;
-<a name="l00107"></a>00107                         <span class="keywordflow">return</span> $block[array_rand($block)];
-<a name="l00108"></a>00108                 }
-<a name="l00109"></a>00109 
-<a name="l00117"></a><a class="code" href="class_faker.html#a32fce2fec558fd53bb274fa15184dfb7">00117</a>                 <span class="keyword">protected</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a32fce2fec558fd53bb274fa15184dfb7" title="Replace all occurrences of d in a format string with a number.">numberize</a> ( $format, $min = 0, $max = 9 ) {
-<a name="l00118"></a>00118                         $format_arguments = array();
-<a name="l00119"></a>00119                         <span class="keywordflow">for</span>( $i = substr_count($format, <span class="stringliteral">&quot;%d&quot;</span>); $i &gt; 0; --$i ) {
-<a name="l00120"></a>00120                                 $format_arguments[] = mt_rand($min,$max);
-<a name="l00121"></a>00121                         }
-<a name="l00122"></a>00122                         <span class="keywordflow">return</span> vsprintf($format, $format_arguments);
-<a name="l00123"></a>00123                 }
-<a name="l00124"></a>00124 
-<a name="l00130"></a><a class="code" href="class_faker.html#ac4fe6daabc41ad852eeeedaef907b392">00130</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#ac4fe6daabc41ad852eeeedaef907b392" title="Get a single paragraph of Lorem Ipsum.">lipsum_p</a> () {
-<a name="l00131"></a>00131                         $sentences = mt_rand( 4, 10 );
-<a name="l00132"></a>00132                         $output = array();
-<a name="l00133"></a>00133                         <span class="keywordflow">for</span>( $i = 0; $i &lt; $sentences; ++$i ) {
-<a name="l00134"></a>00134                                 $output[] = self::lipsum_s();
-<a name="l00135"></a>00135                         }
-<a name="l00136"></a>00136                         <span class="keywordflow">return</span> implode( <span class="charliteral">&#39; &#39;</span>, $output );
-<a name="l00137"></a>00137                 }
-<a name="l00138"></a>00138 
-<a name="l00144"></a><a class="code" href="class_faker.html#aaeb8ec40b1b874a0e484d5d7d5befc53">00144</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#aaeb8ec40b1b874a0e484d5d7d5befc53" title="Get a single sentence of Lorem Ipsum.">lipsum_s</a> () {
-<a name="l00145"></a>00145                         $words = mt_rand( 5, 15 );
-<a name="l00146"></a>00146                         $commad = <span class="keyword">false</span>;
-<a name="l00147"></a>00147                         $output = array();
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149                         <span class="keywordflow">for</span>( $i = 0; $i &lt; $words; ++$i ) {
-<a name="l00150"></a>00150                                 $word = self::lipsum_w();
-<a name="l00151"></a>00151                                 <span class="keywordflow">if</span>( $i == 0 ) { $word = ucwords( $word ); }
-<a name="l00152"></a>00152 
-<a name="l00153"></a>00153                                 $output[] = $word;
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155                                 <span class="keywordflow">if</span>( ! $commad and ( $i + 1 ) != $words and 1 == mt_rand( 1, 5 ) ) {
-<a name="l00156"></a>00156                                         $output[] = <span class="charliteral">&#39;,&#39;</span>;
-<a name="l00157"></a>00157                                         $commad = <span class="keyword">true</span>;
-<a name="l00158"></a>00158                                 }
-<a name="l00159"></a>00159                         }
-<a name="l00160"></a>00160                         <span class="keywordflow">return</span> implode( <span class="charliteral">&#39; &#39;</span>, $output ) . <span class="charliteral">&#39;.&#39;</span>;
-<a name="l00161"></a>00161                 }
-<a name="l00162"></a>00162 
-<a name="l00168"></a><a class="code" href="class_faker.html#ac54a83d64a2abbb800fda7b8c9f8a4bc">00168</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#ac54a83d64a2abbb800fda7b8c9f8a4bc" title="Get a single word of Lorem Ipsum.">lipsum_w</a> () {
-<a name="l00169"></a>00169                         <span class="keywordflow">return</span> self::data_rand(<span class="stringliteral">&#39;lipsum&#39;</span>);
-<a name="l00170"></a>00170                 }
-<a name="l00171"></a>00171 
-<a name="l00177"></a><a class="code" href="class_faker.html#a8022831237cff0d6bd74fbd33886ff42">00177</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a8022831237cff0d6bd74fbd33886ff42" title="Get a persons full name.">name</a> () {
-<a name="l00178"></a>00178                         <span class="keywordflow">return</span> self::first_name() . <span class="charliteral">&#39; &#39;</span> . self::last_name();
-<a name="l00179"></a>00179                 }
-<a name="l00180"></a>00180 
-<a name="l00186"></a><a class="code" href="class_faker.html#a537095bb8cd47f07a88bd9fd9e7fd56b">00186</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a537095bb8cd47f07a88bd9fd9e7fd56b" title="Get a persons first name.">first_name</a> () {
-<a name="l00187"></a>00187                         <span class="keywordflow">return</span> self::data_rand(<span class="stringliteral">&#39;first_name&#39;</span>);
-<a name="l00188"></a>00188                 }
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190 
-<a name="l00196"></a><a class="code" href="class_faker.html#a3f2bdaf3eb220b5a2d53e7794aca632f">00196</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a3f2bdaf3eb220b5a2d53e7794aca632f" title="Get a persons last name.">last_name</a> () {
-<a name="l00197"></a>00197                         <span class="keywordflow">return</span> self::data_rand(<span class="stringliteral">&#39;last_name&#39;</span>);
-<a name="l00198"></a>00198                 }
-<a name="l00199"></a>00199 
-<a name="l00206"></a><a class="code" href="class_faker.html#a89eb142297e8a846f4a244ba9605cb6b">00206</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a89eb142297e8a846f4a244ba9605cb6b" title="Get a phone number.">phone_number</a> ($format = null) {
-<a name="l00207"></a>00207                         <span class="keywordflow">if</span>( $format == null ) {
-<a name="l00208"></a>00208                                 $format = self::data_rand(<span class="stringliteral">&#39;phone_number&#39;</span>);
-<a name="l00209"></a>00209                         }
-<a name="l00210"></a>00210                         <span class="keywordflow">return</span> self::numberize($format);
-<a name="l00211"></a>00211                 }
-<a name="l00212"></a>00212 
-<a name="l00218"></a><a class="code" href="class_faker.html#ae806d8fc132b16e58a6fd342d27f1904">00218</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#ae806d8fc132b16e58a6fd342d27f1904" title="Get a city name.">city</a> () {
-<a name="l00219"></a>00219                         <span class="keywordflow">switch</span>( mt_rand(0,4) ) {
-<a name="l00220"></a>00220                                 <span class="keywordflow">default</span>:
-<a name="l00221"></a>00221                                 <span class="keywordflow">case</span> 0:
-<a name="l00222"></a>00222                                         <span class="keywordflow">return</span> sprintf(
-<a name="l00223"></a>00223                                                 <span class="stringliteral">&#39;%s %s%s&#39;</span>,
-<a name="l00224"></a>00224                                                 self::data_rand(<span class="stringliteral">&#39;city_prefix&#39;</span>),
-<a name="l00225"></a>00225                                                 self::first_name(),
-<a name="l00226"></a>00226                                                 self::data_rand(<span class="stringliteral">&#39;city_suffix&#39;</span>)
-<a name="l00227"></a>00227                                         );
-<a name="l00228"></a>00228                                 <span class="keywordflow">case</span> 1:
-<a name="l00229"></a>00229                                         <span class="keywordflow">return</span> sprintf(
-<a name="l00230"></a>00230                                                 <span class="stringliteral">&#39;%s %s&#39;</span>,
-<a name="l00231"></a>00231                                                 self::data_rand(<span class="stringliteral">&#39;city_prefix&#39;</span>),
-<a name="l00232"></a>00232                                                 self::first_name()
-<a name="l00233"></a>00233                                         );
-<a name="l00234"></a>00234                                 <span class="keywordflow">case</span> 2:
-<a name="l00235"></a>00235                                         <span class="keywordflow">return</span> sprintf(
-<a name="l00236"></a>00236                                                 <span class="stringliteral">&#39;%s%s&#39;</span>,
-<a name="l00237"></a>00237                                                 self::first_name(),
-<a name="l00238"></a>00238                                                 self::data_rand(<span class="stringliteral">&#39;city_suffix&#39;</span>)
-<a name="l00239"></a>00239                                         );
-<a name="l00240"></a>00240                                 <span class="keywordflow">case</span> 3:
-<a name="l00241"></a>00241                                         <span class="keywordflow">return</span> sprintf(
-<a name="l00242"></a>00242                                                 <span class="stringliteral">&#39;%s%s&#39;</span>,
-<a name="l00243"></a>00243                                                 self::last_name(),
-<a name="l00244"></a>00244                                                 self::data_rand(<span class="stringliteral">&#39;city_suffix&#39;</span>)
-<a name="l00245"></a>00245                                         );
-<a name="l00246"></a>00246                         }
-<a name="l00247"></a>00247                 }
-<a name="l00248"></a>00248 
-<a name="l00256"></a><a class="code" href="class_faker.html#ae6dc57aa3aa45b7b86927ba692dd2e75">00256</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#ae6dc57aa3aa45b7b86927ba692dd2e75" title="Get a full street address.">street_address</a> ( $include_secondary = <span class="keyword">false</span> ) {
-<a name="l00257"></a>00257                         $address = self::numberize( self::data_rand( <span class="stringliteral">&#39;street_number&#39;</span> ) ) . <span class="charliteral">&#39; &#39;</span> . self::street_name();
-<a name="l00258"></a>00258                         <span class="keywordflow">if</span>( $include_secondary ) { $address .= <span class="charliteral">&#39; &#39;</span> . self::secondary_address(); }
-<a name="l00259"></a>00259                         <span class="keywordflow">return</span> $address;
-<a name="l00260"></a>00260                 }
-<a name="l00261"></a>00261 
-<a name="l00267"></a><a class="code" href="class_faker.html#a929dff464223bffdc2437ab8a93d33b3">00267</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a929dff464223bffdc2437ab8a93d33b3" title="Get a street name.">street_name</a> () {
-<a name="l00268"></a>00268                         <span class="keywordflow">switch</span>( mt_rand( 0, 1 ) ) {
-<a name="l00269"></a>00269                                 <span class="keywordflow">default</span>:
-<a name="l00270"></a>00270                                 <span class="keywordflow">case</span> 0:
-<a name="l00271"></a>00271                                         <span class="keywordflow">return</span> sprintf(
-<a name="l00272"></a>00272                                                 <span class="stringliteral">&#39;%s %s&#39;</span>,
-<a name="l00273"></a>00273                                                 self::last_name(),
-<a name="l00274"></a>00274                                                 self::data_rand( <span class="stringliteral">&#39;street_suffix&#39;</span> )
-<a name="l00275"></a>00275                                         );
-<a name="l00276"></a>00276                                 <span class="keywordflow">case</span> 1:
-<a name="l00277"></a>00277                                         <span class="keywordflow">return</span> sprintf(
-<a name="l00278"></a>00278                                                 <span class="stringliteral">&#39;%s %s&#39;</span>,
-<a name="l00279"></a>00279                                                 self::first_name(),
-<a name="l00280"></a>00280                                                 self::data_rand( <span class="stringliteral">&#39;street_suffix&#39;</span> )
-<a name="l00281"></a>00281                                         );
-<a name="l00282"></a>00282                         }
-<a name="l00283"></a>00283                 }
-<a name="l00284"></a>00284 
-<a name="l00290"></a><a class="code" href="class_faker.html#aca006a1039d8b4746cf5993f74b83ae5">00290</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#aca006a1039d8b4746cf5993f74b83ae5" title="Get a secondary address (Suite, Apartment)">secondary_address</a> () {
-<a name="l00291"></a>00291                         <span class="keywordflow">return</span> self::numberize( self::data_rand( <span class="stringliteral">&#39;secondary_address&#39;</span> ) );
-<a name="l00292"></a>00292                 }
-<a name="l00293"></a>00293 
-<a name="l00299"></a><a class="code" href="class_faker.html#ace34dff59e29b6a21c20ef5a456162da">00299</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#ace34dff59e29b6a21c20ef5a456162da" title="Get a postal code.">postal_code</a> () {
-<a name="l00300"></a>00300                         <span class="keywordflow">return</span> self::numberize( self::data_rand( <span class="stringliteral">&#39;postal_code&#39;</span> ) );
-<a name="l00301"></a>00301                 }
-<a name="l00302"></a>00302 
-<a name="l00310"></a><a class="code" href="class_faker.html#acf1d620820f0ddd5cb3895f63c0bd2ec">00310</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#acf1d620820f0ddd5cb3895f63c0bd2ec" title="Get a zip code.">zip_code</a> () {
-<a name="l00311"></a>00311                         <span class="keywordflow">return</span> self::postal_code();
-<a name="l00312"></a>00312                 }
-<a name="l00313"></a>00313 
-<a name="l00321"></a><a class="code" href="class_faker.html#a7602665fa24e70b4a4124f89d905ff31">00321</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a7602665fa24e70b4a4124f89d905ff31" title="Get a zip code.">zip</a> () {
-<a name="l00322"></a>00322                         <span class="keywordflow">return</span> self::postal_code();
-<a name="l00323"></a>00323                 }
-<a name="l00324"></a>00324 
-<a name="l00330"></a><a class="code" href="class_faker.html#a335dd4d608c372a82bf44d6b92079f43">00330</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a335dd4d608c372a82bf44d6b92079f43" title="Get a state name.">state</a> () {
-<a name="l00331"></a>00331                         <span class="keywordflow">return</span> self::data_rand(<span class="stringliteral">&#39;state_name&#39;</span>);
-<a name="l00332"></a>00332                 }
-<a name="l00333"></a>00333 
-<a name="l00339"></a><a class="code" href="class_faker.html#ad2b59c9354a1dc9d3245be1f5b1c2255">00339</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#ad2b59c9354a1dc9d3245be1f5b1c2255" title="Get a two letter state abbreviation.">state_abbreviation</a> () {
-<a name="l00340"></a>00340                         <span class="keywordflow">return</span> self::data_rand(<span class="stringliteral">&#39;state_abbreviation&#39;</span>);
-<a name="l00341"></a>00341                 }
-<a name="l00342"></a>00342 
-<a name="l00348"></a><a class="code" href="class_faker.html#a7aa90a696f2daa7903c8ce94beb67b6a">00348</a>                 <span class="keyword">public</span> <span class="keyword">static</span> function <a class="code" href="class_faker.html#a7aa90a696f2daa7903c8ce94beb67b6a" title="Get a country name.">country</a> () {
-<a name="l00349"></a>00349                         <span class="keywordflow">return</span> self::data_rand(<span class="stringliteral">&#39;country_name&#39;</span>);
-<a name="l00350"></a>00350                 }
-<a name="l00351"></a>00351 
-<a name="l00352"></a>00352         }
+<a name="l00064"></a><a class="code" href="class_faker.html">00064</a>         class <a class="code" href="class_faker.html" title="Get fake information from a variety of modules.">Faker</a> extends <a class="code" href="class_kohana___faker.html" title="This class does the actual work of connecting modules.">Kohana_Faker</a> {}
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -263,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -272,7 +78,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 8 2011 18:37:17 for K3-Faker by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 9 2011 19:53:35 for K3-Faker by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

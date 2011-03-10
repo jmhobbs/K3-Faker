@@ -48,31 +48,44 @@
 				A fake data generator for Kohana 3.1.x.
 			</div>
 
-			<p>It is a lazy-loading, locale aware Fake data module for Kohana 3.1.x.</p>
-			<p>It is inspired by (and borrows data from) Ruby's <a href="http://faker.rubyforge.org/" target="_blank">Faker gem</a>,and Perl's <a href="http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm" target="_blank">Data::Faker</a>.</p>
+			<h2>Introduction</h2>
+
+			<p>This module provides a lazy-loading, modular, locale aware fake data generator for Kohana 3.1.x.</p>
+
+			<p>It is inspired by (and borrows data from) Ruby's <a href="http://faker.rubyforge.org/">Faker gem</a>, and Perl's <a href="http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm">Data::Faker</a></p>
 
 			<h2>Dependencies</h2>
 			<p>Kohana 3.1.x</p>
 
-			<h2>Install</h2>
+			<h2>Installation</h2>
+
+			<p>K3-Faker is a simple, standard module.</p>
+
 			<ol>
-				<li>Drop the source in your <tt>MODPATH</tt> folder.</li>
-				<li>Add the module to <tt>Kohana::modules</tt> in your <tt>bootstrap.php</tt></li>
-			</ol>
+			<li>Drop the source in your MODPATH folder.</li>
+			<li>Add the module to Kohana::modules in your bootstrap.php</li>
+			</ol><h2>Usage</h2>
 
-			<h2>Documentation</h2>
+			<p>Use the module methods from Faker:</p>
 
-			<p>Basic Usage</p>
-			<pre>echo Faker::name() . "\n";
-echo Faker::phone_number() . "\n";</pre>
+			<pre><code>echo 'Name: ' . Faker::Name()-&gt;name();</code></pre>
 
-			<p>Output</p>
-			<pre>Abbigail Vandervort
-1-202-479-9161</pre>
+			<p>Output:</p>
 
-			<p>
-				<a href="doc/html/index.html">Click Here For Full Doxygen Documentation</a>
-			</p>
+			<pre><code>Name: Abbigail Vandervort</code></pre>
+
+			<p>Additionally, if you have no arguments, you can now act as if the module method is a property.</p>
+
+			<pre><code>echo 'Name: ' . Faker::Name()-&gt;name;</code></pre>
+
+			<p>Full documentation is available <a href="http://jmhobbs.github.com/K3-Faker/doc/html/index.html">online</a></p>
+
+			<h2>Inspiration / Credit</h2>
+
+			<ul>
+			<li><a href="http://faker.rubyforge.org/">http://faker.rubyforge.org/</a></li>
+			<li><a href="http://www.lipsum.com/">http://www.lipsum.com/</a></li>
+			</ul>
 
 			<h2>License</h2>
 			<pre>Copyright (c) 2011 John Hobbs

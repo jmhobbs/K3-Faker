@@ -19,7 +19,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">K3-Faker&#160;<span id="projectnumber">0.2.0</span></div>
+   <div id="projectname">K3-Faker&#160;<span id="projectnumber">0.3.1</span></div>
    <div id="projectbrief">A fake data generator for Kohana.</div>
   </td>
  </tr>
@@ -57,8 +57,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><h2><a class="anchor" id="section_what_is_k3_faker"></a>
 What is K3-Faker?</h2>
-<p>It is a lazy-loading, locale aware Fake data module for Kohana 3.1.x.</p>
-<p>It is inspired by (and borrows data from) Ruby's <a class="el" href="class_faker.html" title="This class lets you get fake information that looks real.">Faker</a> gem, <a href="http://faker.rubyforge.org/,">http://faker.rubyforge.org/,</a> and Perl's Data::Faker, <a href="http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm">http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm</a></p>
+<p>It is a lazy-loading, modular, locale aware fake data module for Kohana 3.1.x.</p>
+<p>It is inspired by (and borrows data from) Ruby's <a class="el" href="class_faker.html" title="Get fake information from a variety of modules.">Faker</a> gem, <a href="http://faker.rubyforge.org/,">http://faker.rubyforge.org/,</a> and Perl's Data::Faker, <a href="http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm">http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm</a></p>
 <h2><a class="anchor" id="section_installing"></a>
 Installing K3-Faker</h2>
 <ul>
@@ -67,17 +67,30 @@ Installing K3-Faker</h2>
 </ul>
 <h2><a class="anchor" id="section_usage"></a>
 Using K3-Faker</h2>
-<p>Use the static methods in <a class="el" href="class_faker.html" title="This class lets you get fake information that looks real.">Faker</a>: </p>
-<div class="fragment"><pre class="fragment">echo <span class="stringliteral">&#39;Name: &#39;</span> . <a class="code" href="class_faker.html#a8022831237cff0d6bd74fbd33886ff42" title="Get a persons full name.">Faker::name</a>();
+<p>Use the module methods from <a class="el" href="class_faker.html" title="Get fake information from a variety of modules.">Faker</a>: </p>
+<div class="fragment"><pre class="fragment">echo <span class="stringliteral">&#39;Name: &#39;</span> . Faker::Name()-&gt;name();
 </pre></div><p>Output: </p>
 <div class="fragment"><pre class="fragment">Name: Abbigail Vandervort
-</pre></div> </div></div>
+</pre></div><p>Additionally, if you have no arguments, you can now act as if the module method is a property.</p>
+<div class="fragment"><pre class="fragment">echo <span class="stringliteral">&#39;Name: &#39;</span> . Faker::Name()-&gt;name;
+</pre></div><h2><a class="anchor" id="section_installing"></a>
+Installing K3-Faker</h2>
+<p>K3-Faker comes with several default modules, each with several methods.</p>
+<ul>
+<li><a class="el" href="class_kohana___faker___address.html">Address </a> </li>
+<li><a class="el" href="class_kohana___faker___company.html">Company </a> </li>
+<li><a class="el" href="class_kohana___faker___internet.html">Internet </a> </li>
+<li><a class="el" href="class_kohana___faker___lipsum.html">Lipsum </a> </li>
+<li><a class="el" href="class_kohana___faker___name.html">Name </a> </li>
+<li><a class="el" href="class_kohana___faker___phone.html">Phone </a> </li>
+</ul>
+</div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,7 +99,7 @@ Using K3-Faker</h2>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Mar 8 2011 18:37:17 for K3-Faker by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 9 2011 19:53:35 for K3-Faker by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

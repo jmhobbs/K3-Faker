@@ -21,7 +21,9 @@
 				}
 
 				try {
-					$this::$$var_name = Kohana::config('faker/' . $locale . '/' . $name )->as_array();
+					$cfg = Kohana::config( 'faker/' . $locale . '/' . $name );
+					if( is_null( $cfg ) ) { throw new Kohana_Exception( "Pop Goes Default Locale" ); }
+					$this::$$var_name = $cfg->as_array();
 					if( 0 == count( $this::$$var_name ) ) { throw new Kohana_Exception( "Empty locale data file." ); }
 				}
 				catch(Kohana_Exception $e ) {

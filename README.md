@@ -34,6 +34,10 @@ Additionally, if you have no arguments, you can now act as if the module method 
 
     echo 'Name: ' . Faker::Name()->name;
 
+An alternate syntax is to use the factory style (thanks @gevans):
+
+    echo 'Name: ' . Faker::factory( 'name' )->name;
+
 Full documentation is available [online](http://jmhobbs.github.com/K3-Faker/doc/html/index.html)
 
 Inspiration / Credit

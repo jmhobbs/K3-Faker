@@ -26,5 +26,9 @@
 			return self::$instances[$name];
 		}
 
+		public static factory( $name ) {
+			return __callStatic( $name, null );
+		}
+
 	}
 
